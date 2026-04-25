@@ -3,26 +3,14 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material'
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'  // ← ADD THIS
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+// Remove LocalizationProvider imports
 import { store } from './store/store'
 import { setStoreRef } from './store/slices/authSlice'
 import App from './App'
-import './App.css'
+import './index.css'
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-    },
-  },
-})
-
-// Set store reference for axios interceptor
+const queryClient = new QueryClient()
 setStoreRef(store)
 
 const theme = createTheme({
@@ -85,12 +73,10 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <QueryClientProvider client={queryClient}>  {/* ← ADD THIS WRAPPER */}
+      <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ThemeProvider theme={theme}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <App />
-            </LocalizationProvider>
+            <App />
           </ThemeProvider>
         </BrowserRouter>
       </QueryClientProvider>
