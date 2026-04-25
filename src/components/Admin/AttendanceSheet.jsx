@@ -38,7 +38,10 @@ import {
   Edit,
   Event,
 } from '@mui/icons-material'
-import { DatePicker } from '@mui/x-date-pickers'
+// Replace the DatePicker import with TextField
+import { TextField } from '@mui/material'
+
+// Replace the DatePicker component with TextField
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllAttendance, markAttendance } from '../../store/slices/attendanceSlice'
@@ -128,12 +131,14 @@ const AttendanceSheet = () => {
 
         {/* Filters */}
         <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
-          <DatePicker
-            label="Select Date"
-            value={selectedDate}
-            onChange={(newValue) => setSelectedDate(newValue)}
-            sx={{ width: 200 }}
-          />
+         <TextField
+  type="date"
+  label="Select Date"
+  value={selectedDate instanceof Date ? selectedDate.toISOString().split('T')[0] : selectedDate}
+  onChange={(e) => setSelectedDate(new Date(e.target.value))}
+  InputLabelProps={{ shrink: true }}
+  sx={{ width: 200 }}
+/>
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>Filter by Employee</InputLabel>
             <Select

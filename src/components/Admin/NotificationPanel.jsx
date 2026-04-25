@@ -31,7 +31,6 @@ import {
   People,
   Announcement,
 } from '@mui/icons-material'
-import { DatePicker } from '@mui/x-date-pickers'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllNotifications, createNotification, deleteNotification } from '../../store/slices/notificationSlice'
@@ -214,12 +213,15 @@ const NotificationPanel = () => {
                   <MenuItem value="task">Task</MenuItem>
                 </Select>
               </FormControl>
-              <DatePicker
-                label="Date"
-                value={formData.date}
-                onChange={(newValue) => setFormData({ ...formData, date: newValue })}
-                sx={{ width: '100%' }}
-              />
+             // Replace DatePicker with TextField
+<TextField
+  type="date"
+  label="Date"
+  value={formData.date instanceof Date ? formData.date.toISOString().split('T')[0] : formData.date}
+  onChange={(e) => setFormData({ ...formData, date: new Date(e.target.value) })}
+  InputLabelProps={{ shrink: true }}
+  fullWidth
+/>
               <FormControlLabel
                 control={
                   <Switch

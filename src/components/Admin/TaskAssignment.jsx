@@ -32,7 +32,6 @@ import {
   Cancel,
   Flag,
 } from '@mui/icons-material'
-import { DatePicker } from '@mui/x-date-pickers'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllTasks, createTask, updateTaskStatus, deleteTask } from '../../store/slices/taskSlice'
@@ -287,12 +286,15 @@ const TaskAssignment = () => {
                   ))}
                 </Select>
               </FormControl>
-              <DatePicker
-                label="Due Date"
-                value={formData.dueDate}
-                onChange={(newValue) => setFormData({ ...formData, dueDate: newValue })}
-                sx={{ width: '100%' }}
-              />
+              // Replace DatePicker with TextField
+<TextField
+  type="date"
+  label="Due Date"
+  value={formData.dueDate instanceof Date ? formData.dueDate.toISOString().split('T')[0] : formData.dueDate}
+  onChange={(e) => setFormData({ ...formData, dueDate: new Date(e.target.value) })}
+  InputLabelProps={{ shrink: true }}
+  fullWidth
+/>
               <FormControl fullWidth>
                 <InputLabel>Priority</InputLabel>
                 <Select

@@ -4,13 +4,23 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-// Remove LocalizationProvider imports
 import { store } from './store/store'
 import { setStoreRef } from './store/slices/authSlice'
 import App from './App'
 import './index.css'
 
-const queryClient = new QueryClient()
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+      staleTime: 5 * 60 * 1000,
+    },
+  },
+})
+
+// Set store reference for axios interceptor
 setStoreRef(store)
 
 const theme = createTheme({
@@ -50,23 +60,6 @@ const theme = createTheme({
     h6: {
       fontWeight: 600,
     }
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-          fontWeight: 600,
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-        },
-      },
-    },
   },
 })
 
