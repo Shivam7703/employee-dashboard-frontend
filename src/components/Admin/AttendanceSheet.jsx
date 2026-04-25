@@ -38,8 +38,6 @@ import {
   Edit,
   Event,
 } from '@mui/icons-material'
-// Replace the DatePicker import with TextField
-import { TextField } from '@mui/material'
 
 // Replace the DatePicker component with TextField
 import { motion } from 'framer-motion'
