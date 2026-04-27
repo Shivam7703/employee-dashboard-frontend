@@ -42,7 +42,7 @@ const ChatWidget = () => {
   const typingTimeoutRef = useRef(null)
 
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+    const API_URL = import.meta.env.VITE_API_URL || 'https://employee-dashboard-backend-7h53.onrender.com/'
     const newSocket = io(API_URL, {
       withCredentials: true,
     })

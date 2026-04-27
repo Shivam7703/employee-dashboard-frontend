@@ -7,15 +7,15 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://employee-dashboard-backend-7h53.onrender.com/',
         changeOrigin: true
       },
       '/socket.io': {
-        target: 'http://localhost:5000',
+        target: 'https://employee-dashboard-backend-7h53.onrender.com/',
         ws: true
       },
       '/payslips': {
-        target: 'http://localhost:5000',
+        target: 'https://employee-dashboard-backend-7h53.onrender.com/',
         changeOrigin: true
       }
     }
