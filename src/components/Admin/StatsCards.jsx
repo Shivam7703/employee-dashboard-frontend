@@ -17,7 +17,7 @@ const fetchStats = async () => {
   if (!token) {
     throw new Error('No token found')
   }
-  const { data } = await axios.get('/api/admin/stats', {
+  const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/admin/stats`, {
     headers: { Authorization: `Bearer ${token}` }
   })
   return data

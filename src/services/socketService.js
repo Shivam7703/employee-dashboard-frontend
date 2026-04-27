@@ -6,7 +6,7 @@ class SocketService {
   }
 
   connect() {
-    this.socket = io(process.env.REACT_APP_API_URL || 'https://employee-dashboard-backend-7h53.onrender.com/', {
+    this.socket = io(process.env.REACT_APP_API_URL || 'https://employee-dashboard-backend-7h53.onrender.com', {
       withCredentials: true,
     })
 
