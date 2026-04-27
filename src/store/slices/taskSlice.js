@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const API_URL = '/api/tasks'
+const API_URL = `${import.meta.env.VITE_API_URL}/tasks`
 
 export const fetchMyTasks = createAsyncThunk(
   'tasks/fetchMyTasks',
